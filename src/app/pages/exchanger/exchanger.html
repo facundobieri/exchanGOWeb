@@ -1,0 +1,66 @@
+<div class="exchanger-page">
+  <div class="exchanger-header">
+    <h1>Currency Exchanger</h1>
+    <div class="token-badge" aria-label="Remaining tokens">
+      <span class="token-icon">🪙</span>
+      <span>{{ tokensDisplay() }} tokens</span>
+    </div>
+  </div>
+
+  @if (error()) {
+    <div class="alert-error" role="alert">{{ error() }}</div>
+  }
+
+  <div class="exchanger-card card">
+    <form [formGroup]="form" (ngSubmit)="onConvert()">
+      <div class="exchanger-grid">
+        <div class="form-group">
+          <label class="form-label" for="fromCoin">From</label>
+          <select id="fromCoin" class="form-input" formControlName="fromCoin">
+            <option value="" disabled>Select currency</option>
+            @for (coin of coins(); track coin.id) {
+              <option [value]="coin.code">{{ coin.code }} - {{ coin.legend }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="amount">Amount</label>
+          <input
+            id="amount"
+            class="form-input"
+            type="number"
+            formControlName="amount"
+            min="0.01"
+            step="0.01"
+            placeholder="0.00"
+          />
+          @if (form.controls.amount.touched && form.controls.amount.hasError('min')) {
+            <span class="form-error">Amount must be greater than 0</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="toCoin">To</label>
+          <select id="toCoin" class="form-input" formControlName="toCoin">
+            <option value="" disabled>Select currency</option>
+            @for (coin of coins(); track coin.id) {
+              <option [value]="coin.code">{{ coin.code }} - {{ coin.legend }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary convert-btn">
+        Convert
+      </button>
+    </form>
+
+    @if (result() !== null) {
+      <div class="result-card">
+        <span class="result-label">Result</span>
+        <span class="result-value">{{ resultCoinSymbol() }} {{ result() | number:'1.2-6' }}</span>
+      </div>
+    }
+  </div>
+</div>

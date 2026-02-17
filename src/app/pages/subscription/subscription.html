@@ -1,0 +1,58 @@
+<div class="subscription-page">
+  <div class="subscription-header">
+    <h1>Choose Your Plan</h1>
+    <p>Unlock more conversions with a premium plan</p>
+  </div>
+
+  <div class="plans-grid">
+    @for (plan of plans; track plan.tier) {
+      <div
+        class="plan-card card"
+        [class.plan-active]="currentTier() === plan.tier"
+        [class.plan-featured]="plan.tier === 'pro'"
+      >
+        @if (plan.tier === 'pro') {
+          <span class="plan-badge">Most Popular</span>
+        }
+
+        <h2 class="plan-name">{{ plan.name }}</h2>
+        <div class="plan-price">
+          <span class="price-amount">{{ plan.price }}</span>
+          <span class="price-period">/month</span>
+        </div>
+
+        <div class="plan-tokens">
+          @if (plan.tokens === null) {
+            <span class="tokens-value">Unlimited</span>
+          } @else {
+            <span class="tokens-value">{{ plan.tokens }}</span>
+          }
+          <span class="tokens-label">tokens</span>
+        </div>
+
+        <ul class="plan-features" aria-label="Plan features">
+          @for (feature of plan.features; track feature) {
+            <li>
+              <span class="feature-check" aria-hidden="true">✓</span>
+              {{ feature }}
+            </li>
+          }
+        </ul>
+
+        @if (currentTier() === plan.tier) {
+          <button class="btn btn-secondary plan-btn" disabled>
+            Current Plan
+          </button>
+        } @else {
+          <button class="btn btn-primary plan-btn" (click)="selectPlan(plan.tier)">
+            @if (plan.tier === 'free') {
+              Downgrade
+            } @else {
+              Upgrade
+            }
+          </button>
+        }
+      </div>
+    }
+  </div>
+</div>

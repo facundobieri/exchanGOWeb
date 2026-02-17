@@ -1,0 +1,130 @@
+.admin-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+
+  > h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+}
+
+.admin-subtitle {
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+
+.alert-error {
+  background-color: rgba(231, 76, 60, 0.1);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  font-size: 0.875rem;
+}
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+  align-items: start;
+
+  @media (max-width: 860px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-form {
+  h2 {
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+  }
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.admin-table-wrapper {
+  h2 {
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.coins-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  th {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  tbody tr {
+    transition: background-color var(--transition);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+  }
+}
+
+.row-editing {
+  background-color: rgba(27, 217, 106, 0.05) !important;
+}
+
+.coin-code {
+  font-weight: 700;
+  color: var(--green-bright);
+}
+
+.actions-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-icon {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color var(--transition), background-color var(--transition);
+
+  &:hover {
+    border-color: var(--green-accent);
+    background-color: rgba(26, 160, 87, 0.1);
+  }
+}
+
+.btn-icon-danger {
+  &:hover {
+    border-color: var(--danger);
+    background-color: rgba(231, 76, 60, 0.1);
+  }
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 32px 16px !important;
+}

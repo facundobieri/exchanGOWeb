@@ -1,0 +1,144 @@
+.subscription-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.subscription-header {
+  text-align: center;
+  margin-bottom: 48px;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+  }
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: start;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+.plan-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 32px 24px;
+  transition: transform var(--transition), border-color var(--transition);
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.plan-active {
+  border-color: var(--green-accent);
+}
+
+.plan-featured {
+  border-color: var(--green-bright);
+  background: linear-gradient(
+    180deg,
+    rgba(27, 217, 106, 0.05) 0%,
+    var(--card-bg) 40%
+  );
+}
+
+.plan-badge {
+  position: absolute;
+  top: -12px;
+  background-color: var(--green-bright);
+  color: var(--bg-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.plan-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  margin-top: 8px;
+}
+
+.plan-price {
+  margin-bottom: 16px;
+}
+
+.price-amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--green-bright);
+}
+
+.price-period {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.plan-tokens {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 24px;
+  padding: 8px 20px;
+  background-color: var(--green-dark);
+  border-radius: 999px;
+}
+
+.tokens-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--green-bright);
+}
+
+.tokens-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.plan-features {
+  list-style: none;
+  width: 100%;
+  margin-bottom: 24px;
+  text-align: left;
+
+  li {
+    padding: 8px 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.feature-check {
+  color: var(--green-bright);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.plan-btn {
+  width: 100%;
+  margin-top: auto;
+}
