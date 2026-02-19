@@ -10,7 +10,7 @@
   --text-muted: #9a9ca3;
   --danger: #e74c3c;
   --warning: #f39c12;
-  --border-color: #1e2235;
+  --border-color: #1BD96A33; /* 20% opacity */
   --card-bg: #161929;
   --input-bg: #1a1d2e;
   --radius: 8px;
@@ -159,7 +159,7 @@ input, select, textarea {
 
 .card {
   background-color: var(--card-bg);
-  border: 1px solid var(--border-color);
+  border: 4px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 24px;
 }
