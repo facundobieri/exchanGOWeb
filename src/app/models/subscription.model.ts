@@ -5,7 +5,7 @@ export interface SubscriptionPlan {
   name: string;
   tokens: number | null; // null = unlimited
   price: string;
-  features: string[];
+  features: string[]; //[] for future expansion
 }
 
 export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
@@ -14,36 +14,20 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     name: 'Free',
     tokens: 10,
     price: '$0',
-    features: [
-      '10 exchange tokens',
-      'Basic currency pairs',
-      'Standard support',
-    ],
+    features: ['10 exchange tokens']
   },
   {
     tier: 'trial',
     name: 'Trial',
     tokens: 100,
     price: '$9.99',
-    features: [
-      '100 exchange tokens',
-      'All currency pairs',
-      'Priority support',
-      'Exchange history',
-    ],
+    features: ['100 exchange tokens']
   },
   {
     tier: 'pro',
     name: 'Pro',
     tokens: null,
     price: '$29.99',
-    features: [
-      'Unlimited tokens',
-      'All currency pairs',
-      'Premium support',
-      'Exchange history',
-      'Real-time rates',
-      'API access',
-    ],
+    features:['Unlimited tokens']
   },
 ];

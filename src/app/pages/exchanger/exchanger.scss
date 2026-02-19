@@ -44,16 +44,6 @@
   font-size: 0.875rem;
 }
 
-.exchanger-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 16px;
-
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
-  }
-}
-
 .convert-btn {
   width: 100%;
   margin-top: 24px;
