@@ -16,6 +16,7 @@ export class Register {
   private readonly router = inject(Router);
 
   protected readonly error = signal('');
+  protected readonly loading = signal(false);
 
   protected readonly form = this.fb.nonNullable.group(
     {
@@ -24,7 +25,7 @@ export class Register {
       password: ['', [Validators.required, Validators.minLength(6)]],
       repeatPassword: ['', Validators.required],
     },
-    { validators: this.passwordMatchValidator }
+    { validators: this.passwordMatchValidator },
   );
 
   private passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
@@ -41,14 +42,16 @@ export class Register {
       this.form.markAllAsTouched();
       return;
     }
+    this.error.set('');
+    this.loading.set(true);
 
     const { username, email, password } = this.form.getRawValue();
-    const result = this.auth.register(username, email, password);
-
-    if (result.success) {
-      this.router.navigate(['/exchanger']);
-    } else {
-      this.error.set(result.error ?? 'Registration failed');
-    }
+    this.auth.register(username, email, password).subscribe({
+      next: () => this.router.navigate(['/exchanger']),
+      error: (err: Error) => {
+        this.error.set(err.message);
+        this.loading.set(false);
+      },
+    });
   }
 }

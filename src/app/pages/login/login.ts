@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -14,8 +15,10 @@ export class Login {
   private readonly fb = inject(FormBuilder);
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly destroyRef = takeUntilDestroyed;
 
   protected readonly error = signal('');
+  protected readonly loading = signal(false);
 
   protected readonly form = this.fb.nonNullable.group({
     username: ['', Validators.required],
@@ -27,14 +30,16 @@ export class Login {
       this.form.markAllAsTouched();
       return;
     }
+    this.error.set('');
+    this.loading.set(true);
 
     const { username, password } = this.form.getRawValue();
-    const result = this.auth.login(username, password);
-
-    if (result.success) {
-      this.router.navigate(['/exchanger']);
-    } else {
-      this.error.set(result.error ?? 'Login failed');
-    }
+    this.auth.login(username, password).subscribe({
+      next: () => this.router.navigate(['/exchanger']),
+      error: (err: Error) => {
+        this.error.set(err.message);
+        this.loading.set(false);
+      },
+    });
   }
 }

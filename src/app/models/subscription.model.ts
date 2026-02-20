@@ -17,8 +17,8 @@ export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
     features: ['10 exchange tokens']
   },
   {
-    tier: 'trial',
-    name: 'Trial',
+    tier: 'estandar',
+    name: 'Standard',
     tokens: 100,
     price: '$9.99',
     features: ['100 exchange tokens']

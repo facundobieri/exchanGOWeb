@@ -2,7 +2,7 @@
   <div class="exchanger-header">
     <h1>Currency Exchanger</h1>
     <div class="token-badge" aria-label="Remaining tokens">
-      <span class="token-icon">🪙</span>
+      <span class="token-icon" aria-hidden="true">&#x1FA99;</span>
       <span>{{ tokensDisplay() }} tokens</span>
     </div>
   </div>
@@ -15,8 +15,8 @@
     <form [formGroup]="form" (ngSubmit)="onConvert()">
       <div class="form-row">
         <div class="form-group">
-          <label class="form-label" for="fromCoin">From</label>
-          <select id="fromCoin" class="form-input" formControlName="fromCoin">
+          <label class="form-label" for="fromCoinCode">From</label>
+          <select id="fromCoinCode" class="form-input" formControlName="fromCoinCode">
             <option value="" disabled>Select currency</option>
             @for (coin of coins(); track coin.id) {
               <option [value]="coin.code">{{ coin.code }} - {{ coin.legend }}</option>
@@ -41,8 +41,8 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="toCoin">To</label>
-          <select id="toCoin" class="form-input" formControlName="toCoin">
+          <label class="form-label" for="toCoinCode">To</label>
+          <select id="toCoinCode" class="form-input" formControlName="toCoinCode">
             <option value="" disabled>Select currency</option>
             @for (coin of coins(); track coin.id) {
               <option [value]="coin.code">{{ coin.code }} - {{ coin.legend }}</option>
@@ -51,8 +51,8 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary convert-btn">
-        Convert
+      <button type="submit" class="btn btn-primary convert-btn" [disabled]="loading()">
+        @if (loading()) { Converting... } @else { Convert }
       </button>
     </form>
 
