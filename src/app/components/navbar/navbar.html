@@ -15,4 +15,33 @@
     <span class="navbar-user">{{ username() }}</span>
     <button class="btn btn-secondary btn-sm" (click)="logout()">Logout</button>
   </div>
+
+  <button
+    class="hamburger-btn"
+    (click)="toggleMenu()"
+    [attr.aria-expanded]="menuOpen()"
+    aria-controls="mobile-menu"
+    aria-label="Toggle navigation menu"
+  >
+    <span class="hamburger-icon" [class.open]="menuOpen()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+
+  @if (menuOpen()) {
+    <div class="mobile-menu" id="mobile-menu" role="menu">
+      <a routerLink="/exchanger" routerLinkActive="active" class="mobile-link" role="menuitem" (click)="closeMenu()">Exchanger</a>
+      <a routerLink="/subscription" routerLinkActive="active" class="mobile-link" role="menuitem" (click)="closeMenu()">Plans</a>
+      @if (isAdmin()) {
+        <a routerLink="/admin" routerLinkActive="active" class="mobile-link" role="menuitem" (click)="closeMenu()">Admin</a>
+      }
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-user">
+        <span class="navbar-user">{{ username() }}</span>
+        <button class="btn btn-secondary btn-sm" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  }
 </nav>

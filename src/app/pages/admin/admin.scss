@@ -128,3 +128,87 @@
   color: var(--text-muted);
   padding: 32px 16px !important;
 }
+
+/* Mobile coin cards — hidden on desktop */
+.coin-cards {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .admin-page {
+    padding: 24px 16px;
+
+    > h1 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .admin-subtitle {
+    margin-bottom: 20px;
+  }
+
+  .table-container {
+    display: none;
+  }
+
+  .coin-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .coin-card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 16px;
+    transition: background-color var(--transition);
+  }
+
+  .card-editing {
+    background-color: rgba(27, 217, 106, 0.05);
+  }
+
+  .coin-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+
+    .coin-code {
+      font-size: 1.1rem;
+    }
+  }
+
+  .coin-card-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .coin-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .coin-card-field {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+  }
+
+  .coin-card-label {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  .form-actions {
+    flex-direction: column;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}

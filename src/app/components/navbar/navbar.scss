@@ -1,10 +1,12 @@
 .navbar {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 24px;
   padding: 12px 24px;
   background-color: var(--bg-secondary);
   border-bottom: 4px solid var(--border-color);
+  position: relative;
 }
 
 .navbar-brand {
@@ -59,4 +61,107 @@
 .btn-sm {
   padding: 6px 14px;
   font-size: 0.8rem;
+}
+
+/* Hamburger button — hidden on desktop */
+.hamburger-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 8px 6px;
+  cursor: pointer;
+  margin-left: auto;
+  transition: border-color var(--transition);
+
+  &:hover {
+    border-color: var(--green-accent);
+  }
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 20px;
+
+  span {
+    display: block;
+    height: 2px;
+    background-color: var(--text-light);
+    border-radius: 2px;
+    transition: transform var(--transition), opacity var(--transition);
+  }
+
+  &.open {
+    span:nth-child(1) {
+      transform: translateY(6px) rotate(45deg);
+    }
+    span:nth-child(2) {
+      opacity: 0;
+    }
+    span:nth-child(3) {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+  }
+}
+
+/* Mobile menu dropdown */
+.mobile-menu {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0 4px;
+}
+
+.mobile-link {
+  display: block;
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color var(--transition), background-color var(--transition);
+
+  &:hover {
+    color: var(--text-light);
+    background-color: rgba(255, 255, 255, 0.04);
+    text-decoration: none;
+  }
+
+  &.active {
+    color: var(--green-bright);
+    background-color: var(--green-dark);
+  }
+}
+
+.mobile-menu-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 8px 0;
+}
+
+.mobile-menu-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+}
+
+/* Responsive: mobile */
+@media (max-width: 640px) {
+  .navbar-links,
+  .navbar-right {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
 }

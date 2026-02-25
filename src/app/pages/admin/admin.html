@@ -88,7 +88,7 @@
       </form>
     </div>
 
-    <!-- Coin Table -->
+    <!-- Coin Table (desktop) -->
     <div class="admin-table-wrapper card">
       <h2>Existing Coins</h2>
 
@@ -136,6 +136,49 @@
             }
           </tbody>
         </table>
+      </div>
+
+      <!-- Coin Cards (mobile) -->
+      <div class="coin-cards">
+        @for (coin of coins(); track coin.id) {
+          <div class="coin-card" [class.card-editing]="editingId() === coin.id">
+            <div class="coin-card-header">
+              <span class="coin-code">{{ coin.code }}</span>
+              <div class="coin-card-actions">
+                <button
+                  class="btn-icon"
+                  (click)="editCoin(coin)"
+                  [attr.aria-label]="'Edit ' + coin.code"
+                >
+                  ✏️
+                </button>
+                <button
+                  class="btn-icon btn-icon-danger"
+                  (click)="deleteCoin(coin)"
+                  [attr.aria-label]="'Delete ' + coin.code"
+                >
+                  🗑️
+                </button>
+              </div>
+            </div>
+            <div class="coin-card-body">
+              <div class="coin-card-field">
+                <span class="coin-card-label">Legend</span>
+                <span>{{ coin.legend }}</span>
+              </div>
+              <div class="coin-card-field">
+                <span class="coin-card-label">Symbol</span>
+                <span>{{ coin.symbol }}</span>
+              </div>
+              <div class="coin-card-field">
+                <span class="coin-card-label">Index (USD)</span>
+                <span>{{ coin.convertibilityIndex | number:'1.2-6' }}</span>
+              </div>
+            </div>
+          </div>
+        } @empty {
+          <p class="empty-state">No coins added yet</p>
+        }
       </div>
     </div>
   </div>
